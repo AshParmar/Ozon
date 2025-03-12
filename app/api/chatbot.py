@@ -1,38 +1,62 @@
 import os
-import openai
 import dotenv
+import google.generativeai as genai
+from typing import Optional, List
 
 # Load environment variables
 dotenv.load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-def chat_completion(prompt, model_engine="gpt-3.5-turbo"):
+if not GOOGLE_API_KEY:
+    raise ValueError("API key not found. Please set the GOOGLE_API_KEY environment variable.")
+
+# Configure Gemini API
+genai.configure(api_key=GOOGLE_API_KEY)
+
+# Initialize Gemini Model
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+def chat_completion(prompt: str) -> Optional[str]:
     """
-    Get a chat completion response from OpenAI's API.
+    Get a chat completion response from Gemini API.
+
+    Args:
+        prompt (str): The user's input prompt.
+
+    Returns:
+        Optional[str]: The generated response from the model, or None if an error occurs.
     """
     try:
-        response = openai.ChatCompletion.create(
-            model=model_engine,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-        )
-        return response.choices[0].message['content']
+        response = model.generate_content(prompt)
+        return response.text
     except Exception as e:
         print(f"Error in chat_completion: {e}")
-        return "Sorry, I don't understand."
-
-def get_embeddings(text, model_engine="text-embedding-ada-002"):
-    """
-    Get embeddings for a given text using OpenAI's API.
-    """
-    try:
-        response = openai.Embedding.create(
-            input=text,
-            model=model_engine,
-        )
-        return response["data"][0]["embedding"]
-    except Exception as e:
-        print(f"Error in get_embeddings: {e}")
         return None
+
+def get_embeddings(text: str) -> Optional[List[float]]:
+    """
+    Get embeddings for a given text using Gemini API.
+    
+    (Note: Gemini API does not currently provide embeddings like OpenAI’s API, 
+    so this function is a placeholder.)
+
+    Args:
+        text (str): The text to get embeddings for.
+
+    Returns:
+        Optional[List[float]]: Placeholder return value, since embeddings are unavailable.
+    """
+    print("Warning: Gemini API does not currently support text embeddings.")
+    return None
+
+# Example usage
+if _name_ == "_main_":
+    prompt = "What is the capital of France?"
+    response = chat_completion(prompt)
+    if response:
+        print(f"Chat Completion: {response}")
+
+    text = "This is a sample text for embeddings."
+    embeddings = get_embeddings(text)
+    if embeddings:
+        print(f"Embeddings: {embeddings}")
