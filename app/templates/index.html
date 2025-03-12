@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="loader-overlay" id="loader-overlay" style="display: none">
+    <div class="loader">
+        <div id="first">
+            <div id="second">
+                <div id="third">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0 align-items-center">
+            <div class="col-md-6">
+                <div class="text-center text-md-start">
+                    <p class="fw-bold text-success mb-2">Welcome to Ozon</p>
+                    <h1 class="display-4 fw-bold mb-4">Chart Your Ideal Academic Journey</h1>
+                    <p class="lead mb-4">Discover personalized course recommendations tailored just for you. Unlock your learning potential with Ozon.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#mlTextArea" class="btn btn-primary btn-lg">Explore with ML</a>
+                        <a href="#chatGptTextArea" class="btn btn-outline-primary btn-lg">Chat with AI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-xl-5 m-xl-5">
+                    <img class="img-fluid w-100 rounded-4 shadow" src="{{ url_for('static', filename='img/programming.svg') }}" alt="Learning Illustration">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-dark-gradient">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-6">
+                <div class="p-4 bg-dark rounded-4 shadow">
+                    <h3 class="fw-bold mb-3">Machine Learning Recommendations</h3>
+                    <p class="text-muted mb-4">Our custom ML model analyzes your interests to recommend the best courses for you.</p>
+                    <form id="mlForm" method="post" action="{{ url_for('task.recommend') }}">
+                        <textarea id="mlTextArea" name="prompt" class="form-control bg-dark text-light border-secondary" style="height: 150px;" placeholder="Describe your interests..." required></textarea>
+                        <button id="mlSubmitBtn" class="btn btn-primary w-100 mt-3">Get Recommendations</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 bg-dark rounded-4 shadow">
+                    <h3 class="fw-bold mb-3">Chat with AI</h3>
+                    <p class="text-muted mb-4">Ask our AI for personalized course suggestions and guidance.</p>
+                    <form id="gptForm" method="post" action="{{ url_for('task.gpt') }}">
+                        <textarea id="chatGptTextArea" name="prompt" class="form-control bg-dark text-light border-secondary" style="height: 150px;" placeholder="Ask me anything..." required></textarea>
+                        <button id="chatGptSubmitBtn" class="btn btn-primary w-100 mt-3">Chat Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

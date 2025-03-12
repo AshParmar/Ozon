@@ -1,0 +1,69 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    background-color: #1f1f1f !important;
+}
+
+.navbar-brand, .nav-link {
+    color: #e0e0e0 !important;
+}
+
+.nav-link:hover {
+    color: #bb86fc !important;
+}
+
+.card {
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #bb86fc;
+    border: none;
+    border-radius: 5px;
+    color: #121212;
+}
+
+.btn-primary:hover {
+    background-color: #9a67ea;
+}
+
+.alert {
+    border-radius: 5px;
+}
+
+.qa-container {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.user-message, .assistant-message {
+    color: #e0e0e0;
+}
+
+.loader-overlay {
+    background-color: rgba(18, 18, 18, 0.9);
+}
+
+.loader {
+    background-color: #1f1f1f;
+    box-shadow: inset 0px 0px 10px #bb86fc,
+                inset 5px 5px 12px rgba(187, 134, 252, 0.8),
+                inset 8px 8px 1px rgba(187, 134, 252, 0.7),
+                0px 0px 1px rgba(187, 134, 252, 0.6);
+}
+
+.loader div::before {
+    background-color: #bb86fc;
+    box-shadow: inset 5px 5px 10px rgba(187, 134, 252, 0.8),
+                0px 0px 2px #e0e0e0;
+}
