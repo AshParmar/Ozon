@@ -17,7 +17,7 @@ class Recommender:
         """
         Load embeddings for courses from the CSV file and insert new embeddings into the database.
         """
-
+        existing_course_names = set(get_all_course_names())
         data = pd.read_csv(self.path)
         embeddings_to_insert = []
 
