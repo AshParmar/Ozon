@@ -50,7 +50,7 @@ def get_embeddings(text: str) -> Optional[List[float]]:
     return None
 
 # Example usage
-if _name_ == "_main_":
+if __name__== "_main_":
     prompt = "What is the capital of France?"
     response = chat_completion(prompt)
     if response:
